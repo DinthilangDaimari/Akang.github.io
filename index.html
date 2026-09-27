@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Special Question For You ❤️</title>
+  
+  <!-- EmailJS SDK Integration -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      // Public Key configured
+      emailjs.init("JLf-82wJp01NJOTgS");
+    })();
+  </script>
+
+  <style>
+    /* Mobile-first layout */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffe6e9 0%, #fecdd3 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* Floating hearts animation */
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      color: #f43f5e;
+      animation: floatUp 4s linear infinite;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Card container */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      width: 100%;
+      max-width: 400px;
+      border-radius: 24px;
+      padding: 28px 20px;
+      box-shadow: 0 10px 30px rgba(244, 63, 94, 0.2);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .emoji {
+      font-size: 50px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      color: #9f1239;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    button {
+      background: #f43f5e;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    /* Hide step screens */
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    /* Final step buttons styling */
+    .final-btns {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      min-height: 120px;
+    }
+
+    #noBtn {
+      background: #94a3b8;
+      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.3);
+      transition: transform 0.15s ease;
+    }
+
+    .progress {
+      font-size: 0.8rem;
+      color: #fb7185;
+      margin-bottom: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- Step 1 -->
+    <div class="step active" id="step1">
+      <div class="progress">Question 1 of 5</div>
+      <div class="emoji">✨</div>
+      <h2>Do you know who makes my day brighter every single time they smile?</h2>
+      <div class="btn-group">
+        <button onclick="recordAnswer('Q1', 'Is it me? 🥺', 2)">Is it me? 🥺</button>
+        <button onclick="recordAnswer('Q1', 'Who is it? 👀', 2)">Who is it? 👀</button>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" id="step2">
+      <div class="progress">Question 2 of 5</div>
+      <div class="emoji">🧸</div>
+      <h2>Correct! It's you! Now, how much do you enjoy our deep late-night conversations?</h2>
+      <div class="btn-group">
+        <button onclick="recordAnswer('Q2', 'I love them! ❤️', 3)">I love them! ❤️</button>
+        <button onclick="recordAnswer('Q2', 'They are my favorite part of the day 🥰', 3)">They are my favorite part of the day 🥰</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step" id="step3">
+      <div class="progress">Question 3 of 5</div>
+      <div class="emoji">🍕</div>
+      <h2>If we were hanging out right now, what would we be doing?</h2>
+      <div class="btn-group">
+        <button onclick="recordAnswer('Q3', 'Eating yummy food together 😋', 4)">Eating yummy food together 😋</button>
+        <button onclick="recordAnswer('Q3', 'Cuddling and watching movies 🍿', 4)">Cuddling and watching movies 🍿</button>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step" id="step4">
+      <div class="progress">Question 4 of 5</div>
+      <div class="emoji">💫</div>
+      <h2>Do you believe that some people are just meant to cross paths?</h2>
+      <div class="btn-group">
+        <button onclick="recordAnswer('Q4', 'Yes, absolutely ✨', 5)">Yes, absolutely ✨</button>
+        <button onclick="recordAnswer('Q4', 'I think we were meant to meet ❤️', 5)">I think we were meant to meet ❤️</button>
+      </div>
+    </div>
+
+    <!-- Step 5 (Final Proposal) -->
+    <div class="step" id="step5">
+      <div class="progress">Final Question ❤️</div>
+      <div class="emoji">💍</div>
+      <h2>You've made it to the end! So... will you be my girlfriend?</h2>
+      <div class="final-btns">
+        <button id="yesBtn" onclick="acceptProposal()">YES! 💖</button>
+        <button id="noBtn" onclick="dodgeNo()">No 😜</button>
+      </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="step" id="stepSuccess">
+      <div class="emoji">🎉💖🥳</div>
+      <h2>YAY! You just made me the happiest person alive!</h2>
+      <p style="color: #4c0519; line-height: 1.5; margin-top: 10px;">I can't wait for all our amazing adventures together. Sending you the biggest hug right now! 🤗✨</p>
+    </div>
+  </div>
+
+  <script>
+    // Object to store all selected answers
+    const userSelections = {};
+
+    // Record selected choices
+    function recordAnswer(questionKey, selectedText, nextStepNumber) {
+      userSelections[questionKey] = selectedText;
+      nextStep(nextStepNumber);
+    }
+
+    // Floating hearts creation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+
+    // Step navigation
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById(`step${stepNumber}`).classList.add('active');
+    }
+
+    // Dodging "No" button logic
+    let yesScale = 1;
+    function dodgeNo() {
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+
+      const x = (Math.random() - 0.5) * 160;
+      const y = (Math.random() - 0.5) * 160;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      yesScale += 0.2;
+      yesBtn.style.transform = `scale(${yesScale})`;
+    }
+
+    // Send choices via EmailJS
+    function sendResultsToEmail() {
+      userSelections["Final Question"] = "YES! 💖";
+
+      let formattedAnswers = "";
+      for (const [q, answer] of Object.entries(userSelections)) {
+        formattedAnswers += `${q}: ${answer}\n`;
+      }
+
+      const templateParams = {
+        name: "Dinthilang",
+        title: "Proposal Quiz Responses",
+        email: "dinthilangdaimari96@gmail.com",
+        message: formattedAnswers
+      };
+
+      // Service ID 'Dinthilang' and Template ID configured
+      emailjs.send('Dinthilang', 'template_contact_us', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+          console.log('FAILED...', error);
+        });
+    }
+
+    // Handle acceptance
+    function acceptProposal() {
+      sendResultsToEmail();
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById('stepSuccess').classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
