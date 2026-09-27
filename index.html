@@ -8,7 +8,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // Initializing EmailJS with your Public Key
+      // Initializing EmailJS with Public Key
       emailjs.init("JLf-82wjp01NJOTgS");
     })();
   </script>
@@ -134,6 +134,35 @@
       margin-bottom: 15px;
       text-shadow: 0 1px 4px rgba(0,0,0,0.15);
       font-weight: 400;
+    }
+
+    /* Name Input Style */
+    .name-input {
+      width: 85%;
+      padding: 12px 18px;
+      border-radius: 25px;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      outline: none;
+      margin-bottom: 18px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .name-input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 400;
+    }
+
+    .name-input:focus {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
     }
 
     /* Holding Hands Animation Container */
@@ -321,60 +350,70 @@
       <h1>Hey Akangshi!</h1>
       <p>I crafted a small interactive journey just for you. Take a quick moment to click through...</p>
       <button class="primary-btn" onclick="startJourney()">Start ❤️</button>
-      <div class="page-indicator">Page 1 of 6</div>
+      <div class="page-indicator">Page 1 of 7</div>
     </div>
 
-    <!-- Page 2 -->
+    <!-- Page 2: Visitor Name Capture -->
     <div class="page" id="page-2">
-      <div class="emoji-icon">🌸</div>
-      <h1>A Quick Thought...</h1>
-      <p>Every single time I see your smile or hear you speak, my whole day instantly gets brighter, Akangshi.</p>
-      <button class="primary-btn" onclick="nextPage(3)">Next ➔</button>
-      <div class="page-indicator">Page 2 of 6</div>
+      <div class="emoji-icon">👋</div>
+      <h1>Before We Begin...</h1>
+      <p>Confirm your nickname or full name so I can personalize this for you!</p>
+      <input type="text" id="visitor-name-input" class="name-input" value="" placeholder="Type your name..." autocomplete="off">
+      <button class="primary-btn" onclick="saveNameAndNext()">Continue ➔</button>
+      <div class="page-indicator">Page 2 of 7</div>
     </div>
 
     <!-- Page 3 -->
     <div class="page" id="page-3">
+      <div class="emoji-icon">🌸</div>
+      <h1>A Quick Thought...</h1>
+      <p>Every single time I see your smile or hear you speak, my whole day instantly gets brighter, <span class="user-display-name">Akangshi</span>.</p>
+      <button class="primary-btn" onclick="nextPage(4)">Next ➔</button>
+      <div class="page-indicator">Page 3 of 7</div>
+    </div>
+
+    <!-- Page 4 -->
+    <div class="page" id="page-4">
       <div class="emoji-icon">💭</div>
       <h1>Truth Be Told...</h1>
       <p>You've been on my mind constantly, and I just couldn't keep this feeling to myself any longer.</p>
-      <button class="primary-btn" onclick="nextPage(4)">Next ➔</button>
-      <div class="page-indicator">Page 3 of 6</div>
+      <button class="primary-btn" onclick="nextPage(5)">Next ➔</button>
+      <div class="page-indicator">Page 4 of 7</div>
     </div>
 
-    <!-- Page 4: Ex-Boyfriend Question -->
-    <div class="page" id="page-4">
+    <!-- Page 5: Ex-Boyfriend Question -->
+    <div class="page" id="page-5">
       <div class="emoji-icon">🤫</div>
       <h1>A Little Curiosity...</h1>
-      <p>Before I ask my big question... how many ex-boyfriends do you have, Akangshi?</p>
+      <p>Before I ask my big question... how many ex-boyfriends do you have, <span class="user-display-name">Akangshi</span>?</p>
       <div class="option-grid">
         <button class="option-btn" onclick="selectExCount('Zero 😇')">Zero 😇</button>
         <button class="option-btn" onclick="selectExCount('Just 1 🙈')">Just 1 🙈</button>
         <button class="option-btn" onclick="selectExCount('2 or more 😅')">2 or more 😅</button>
         <button class="option-btn" onclick="selectExCount('It\'s a secret 🤫')">It's a secret 🤫</button>
       </div>
-      <div class="page-indicator">Page 4 of 6</div>
+      <div class="page-indicator">Page 5 of 7</div>
     </div>
 
-    <!-- Page 5 -->
-    <div class="page" id="page-5">
+    <!-- Page 6 -->
+    <div class="page" id="page-6">
       <div class="emoji-icon">💫</div>
       <h1>One Little Secret...</h1>
       <p id="ex-response-text">No matter what, the past is past and life feels so much more special with you in it. So Akangshi...</p>
-      <button class="primary-btn" onclick="nextPage(6)">Are you ready? ✨</button>
-      <div class="page-indicator">Page 5 of 6</div>
+      <button class="primary-btn" onclick="nextPage(7)">Are you ready? ✨</button>
+      <div class="page-indicator">Page 6 of 7</div>
     </div>
 
-    <!-- Page 6 (Final Proposal Page) -->
-    <div class="page" id="page-6">
+    <!-- Page 7 (Final Proposal Page) -->
+    <div class="page" id="page-7">
       <div class="emoji-icon">💖</div>
       <h1>Will You Be Mine?</h1>
-      <p>Akangshi, will you go out with me and make my world complete?</p>
+      <p><span class="user-display-name">Akangshi</span>, will you go out with me and make my world complete?</p>
       <div class="btn-group">
         <button id="yes-btn" class="primary-btn" onclick="sayYes()">YES! 🥰</button>
         <button id="no-btn" class="primary-btn btn-no" onclick="sayNo()">No 🥺</button>
       </div>
-      <div class="page-indicator">Page 6 of 6</div>
+      <div class="page-indicator">Page 7 of 7</div>
     </div>
 
     <!-- Celebration Page with Holding Hands, Image & Final Question -->
@@ -420,30 +459,72 @@
     <div class="page" id="page-sad">
       <div class="emoji-icon">🌧️</div>
       <h1>I Understand... 💔</h1>
-      <p>Thank you for taking the time to read this, Akangshi. I appreciate your honesty and wish you all the happiness in the world.</p>
+      <p>Thank you for taking the time to read this, <span class="user-display-name">Akangshi</span>. I appreciate your honesty and wish you all the happiness in the world.</p>
     </div>
 
   </div>
 
   <script>
-    // --- EmailJS Notification Integration ---
+    // --- Submitter Data State ---
+    let submitterName = "Akangshi";
+    let emailSent = false; // Prevent duplicate emails during a single session
+
     let userAnswers = {
       exCount: "Not specified",
       proposalResponse: "Pending",
       lifetimeResponse: "Pending"
     };
 
-    function sendEmailNotification(actionType) {
+    // Save Name and update dynamic placeholders across pages
+    function saveNameAndNext() {
+      const inputVal = document.getElementById('visitor-name-input').value.trim();
+      if (inputVal !== "") {
+        submitterName = inputVal;
+      }
+
+      // Dynamic text update across pages
+      const displayElements = document.querySelectorAll('.user-display-name');
+      displayElements.forEach(el => {
+        el.innerText = submitterName;
+      });
+
+      nextPage(3);
+    }
+
+    async function sendEmailNotification(actionType) {
+      // Guard: Ensure only one email is sent per session/visit
+      if (emailSent) return;
+      emailSent = true;
+
+      let userIp = "Unknown";
+      
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        userIp = data.ip;
+      } catch (err) {
+        console.error("Could not fetch IP:", err);
+      }
+
       const templateParams = {
-        name: "Akangshi",
+        name: submitterName,
+        time: new Date().toLocaleTimeString(),
         message: `Response Activity:
+- Submitter Name: ${submitterName}
 - Selected Ex Count: ${userAnswers.exCount}
 - Proposal Answer: ${userAnswers.proposalResponse}
 - Lifetime Answer: ${userAnswers.lifetimeResponse}
-- Trigger Event: ${actionType}`
+- Trigger Event: ${actionType}`,
+        
+        // Multi-site & Tracking Variables
+        site_domain: window.location.hostname,
+        site_url: window.location.href,
+        user_ip: userIp,
+        user_agent: navigator.userAgent,
+        time_sent: new Date().toLocaleString()
       };
 
-      // Sending email via EmailJS Template ID template_cnx82wk
+      // Sending email via EmailJS
       emailjs.send("default_service", "template_cnx82wk", templateParams)
         .then(function(response) {
            console.log('Email sent successfully!', response.status, response.text);
@@ -598,15 +679,15 @@
       userAnswers.exCount = count;
       const responseText = document.getElementById('ex-response-text');
       if (count.includes('Zero')) {
-        responseText.innerText = "A fresh start together! Life feels so much more special with you in it. So Akangshi...";
+        responseText.innerText = `A fresh start together! Life feels so much more special with you in it. So ${submitterName}...`;
       } else if (count.includes('Just 1')) {
-        responseText.innerText = "The past made you who you are today, and you are truly wonderful. So Akangshi...";
+        responseText.innerText = `The past made you who you are today, and you are truly wonderful. So ${submitterName}...`;
       } else if (count.includes('2 or more')) {
-        responseText.innerText = "Every chapter led you here, and I'm just glad to know you. So Akangshi...";
+        responseText.innerText = `Every chapter led you here, and I'm just glad to know you. So ${submitterName}...`;
       } else {
-        responseText.innerText = "Keeping your secrets, I see! Either way, life feels so much brighter with you in it. So Akangshi...";
+        responseText.innerText = `Keeping your secrets, I see! Either way, life feels so much brighter with you in it. So ${submitterName}...`;
       }
-      nextPage(5);
+      nextPage(6);
     }
 
     // --- Smooth Navigation & Email Triggering Logic ---
@@ -630,7 +711,7 @@
 
     function sayYes() {
       userAnswers.proposalResponse = "YES!";
-      sendEmailNotification("Proposal Accepted (YES)");
+      // Email send removed here to consolidate into one single email on final step
       const activePage = document.querySelector('.page.active');
       if (activePage) {
         activePage.classList.remove('active');
@@ -643,14 +724,16 @@
 
     function sayYesLifetime() {
       userAnswers.lifetimeResponse = "Yes, Forever!";
-      sendEmailNotification("Lifetime Question Accepted (Yes, Forever!)");
+      sendEmailNotification("Final Response Submitted (Accepted Everything ❤️)");
       triggerConfetti();
     }
 
     function sayNo() {
-      userAnswers.proposalResponse = "No";
+      if (userAnswers.proposalResponse === "Pending") {
+        userAnswers.proposalResponse = "No";
+      }
       userAnswers.lifetimeResponse = "No";
-      sendEmailNotification("Selected NO");
+      sendEmailNotification("Final Response Submitted (Selected NO 🥺)");
       const activePage = document.querySelector('.page.active');
       if (activePage) {
         activePage.classList.remove('active');
