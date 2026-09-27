@@ -165,6 +165,19 @@
       box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
     }
 
+    /* Validation Shake Animation for Compulsory Input */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    .shake-input {
+      animation: shake 0.4s ease-in-out;
+      border-color: #ff2a5f !important;
+      background: rgba(255, 42, 95, 0.25) !important;
+    }
+
     /* Holding Hands Animation Container */
     .hands-animation-wrapper {
       position: relative;
@@ -357,8 +370,16 @@
     <div class="page" id="page-2">
       <div class="emoji-icon">👋</div>
       <h1>Before We Begin...</h1>
-      <p>Confirm your nickname or full name so I can personalize this for you!</p>
-      <input type="text" id="visitor-name-input" class="name-input" value="" placeholder="Type your name..." autocomplete="off">
+      <p>Please enter your name so I can personalize this for you!</p>
+      <input 
+        type="text" 
+        id="visitor-name-input" 
+        class="name-input" 
+        placeholder="Type your name here..." 
+        autocomplete="off"
+        required
+        oninput="this.classList.remove('shake-input');"
+      >
       <button class="primary-btn" onclick="saveNameAndNext()">Continue ➔</button>
       <div class="page-indicator">Page 2 of 7</div>
     </div>
@@ -466,7 +487,7 @@
 
   <script>
     // --- Submitter Data State ---
-    let submitterName = "Akangshi";
+    let submitterName = "";
     let emailSent = false; // Prevent duplicate emails during a single session
 
     let userAnswers = {
@@ -475,12 +496,22 @@
       lifetimeResponse: "Pending"
     };
 
-    // Save Name and update dynamic placeholders across pages
+    // Save Name and update dynamic placeholders across pages (Compulsory Name Validation)
     function saveNameAndNext() {
-      const inputVal = document.getElementById('visitor-name-input').value.trim();
-      if (inputVal !== "") {
-        submitterName = inputVal;
+      const inputEl = document.getElementById('visitor-name-input');
+      const inputVal = inputEl.value.trim();
+
+      // Validation: Enforce input before proceeding
+      if (inputVal === "") {
+        inputEl.classList.remove('shake-input');
+        void inputEl.offsetWidth; // Trigger reflow to restart animation
+        inputEl.classList.add('shake-input');
+        inputEl.placeholder = "Name is required to continue! ❤️";
+        inputEl.focus();
+        return; // Block execution
       }
+
+      submitterName = inputVal;
 
       // Dynamic text update across pages
       const displayElements = document.querySelectorAll('.user-display-name');
@@ -711,7 +742,6 @@
 
     function sayYes() {
       userAnswers.proposalResponse = "YES!";
-      // Email send removed here to consolidate into one single email on final step
       const activePage = document.querySelector('.page.active');
       if (activePage) {
         activePage.classList.remove('active');
