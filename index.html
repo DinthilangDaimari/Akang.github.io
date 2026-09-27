@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Special Message For Akangshi ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Special Question For You ❤️</title>
+  
   <!-- EmailJS SDK Integration -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
-    (function() {
-      // Initializing EmailJS with Public Key
-      emailjs.init("JLf-82wjp01NJOTgS");
+    (function(){
+      // Public Key configured
+      emailjs.init("JLf-82wJp01NJOTgS");
     })();
   </script>
+
   <style>
+    /* Mobile-first layout */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -22,745 +25,255 @@
     }
 
     body {
-      background: radial-gradient(circle at center, #ff758c 0%, #ff7eb3 50%, #764ba2 100%);
+      background: linear-gradient(135deg, #ffe6e9 0%, #fecdd3 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-      position: relative;
-      perspective: 1200px;
+      padding: 20px;
+      overflow-x: hidden;
     }
 
-    /* Fullscreen FX Canvas */
-    canvas#effect-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 100;
-    }
-
-    /* Floating background hearts */
-    .bg-heart {
-      position: absolute;
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 22px;
-      animation: floatUp 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    /* Floating hearts animation */
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      color: #f43f5e;
+      animation: floatUp 4s linear infinite;
       z-index: 0;
-      user-select: none;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-      will-change: transform, opacity;
+      opacity: 0.6;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(105vh) scale(0.6) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.8; }
-      85% { opacity: 0.8; }
-      100% { transform: translateY(-10vh) scale(1.3) rotate(360deg); opacity: 0; }
+      0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* Glassmorphism Card Container */
-    .card-container {
-      background: rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1.5px solid rgba(255, 255, 255, 0.45);
-      border-radius: 36px;
-      padding: 30px 25px;
-      width: 90%;
-      max-width: 420px;
-      min-height: 520px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2), 0 0 50px rgba(255, 117, 140, 0.4);
+    /* Card container */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      width: 100%;
+      max-width: 400px;
+      border-radius: 24px;
+      padding: 28px 20px;
+      box-shadow: 0 10px 30px rgba(244, 63, 94, 0.2);
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
       position: relative;
       z-index: 10;
-      transform-style: preserve-3d;
-      will-change: transform;
-      transition: transform 0.12s ease-out;
+      backdrop-filter: blur(10px);
     }
 
-    /* Smooth Spring Fade/Zoom Page Animations */
-    .page {
-      display: none;
+    .emoji {
+      font-size: 50px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      color: #9f1239;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .btn-group {
+      display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      opacity: 0;
-      transform: scale(0.92) translateY(12px);
-      transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      will-change: transform, opacity;
+      gap: 12px;
+      margin-top: 15px;
     }
 
-    .page.active {
-      display: flex;
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-
-    .emoji-icon {
-      font-size: 70px;
-      margin-bottom: 18px;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.18));
-      animation: smoothFloat 3.5s ease-in-out infinite;
-      will-change: transform;
-    }
-
-    @keyframes smoothFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(4deg); }
-    }
-
-    h1 {
-      color: #ffffff;
-      font-size: 24px;
-      margin-bottom: 10px;
-      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    p {
-      color: #fce7f3;
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 15px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.15);
-      font-weight: 400;
-    }
-
-    /* Name Input Style */
-    .name-input {
-      width: 85%;
-      padding: 12px 18px;
-      border-radius: 25px;
-      border: 1.5px solid rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.25);
-      color: #ffffff;
-      font-size: 16px;
+    button {
+      background: #f43f5e;
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      font-size: 1rem;
       font-weight: 600;
-      text-align: center;
-      outline: none;
-      margin-bottom: 18px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+      transition: all 0.2s ease;
     }
 
-    .name-input::placeholder {
-      color: rgba(255, 255, 255, 0.75);
-      font-weight: 400;
+    button:active {
+      transform: scale(0.96);
     }
 
-    .name-input:focus {
-      border-color: #ffffff;
-      background: rgba(255, 255, 255, 0.35);
-      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+    /* Hide step screens */
+    .step {
+      display: none;
     }
 
-    /* Holding Hands Animation Container */
-    .hands-animation-wrapper {
-      position: relative;
-      width: 140px;
-      height: 100px;
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hands-svg {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 8px 16px rgba(255, 8, 68, 0.4));
-    }
-
-    .hand-left {
-      animation: holdLeft 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      transform-origin: left center;
-    }
-
-    .hand-right {
-      animation: holdRight 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      transform-origin: right center;
-    }
-
-    .heart-glow {
-      animation: heartPulse 1.5s ease-in-out infinite alternate 1.8s;
-      transform-origin: center;
-    }
-
-    @keyframes holdLeft {
-      0% { transform: translateX(-35px) rotate(-15deg); opacity: 0; }
-      100% { transform: translateX(0) rotate(0deg); opacity: 1; }
-    }
-
-    @keyframes holdRight {
-      0% { transform: translateX(35px) rotate(15deg); opacity: 0; }
-      100% { transform: translateX(0) rotate(0deg); opacity: 1; }
-    }
-
-    @keyframes heartPulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 5px #ff4b2b); }
-      100% { transform: scale(1.15); filter: drop-shadow(0 0 18px #ff416c); }
-    }
-
-    /* Image Display Container on Celebration Page */
-    .image-card {
-      width: 100%;
-      max-width: 210px;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      margin: 10px 0 15px 0;
-      transform: rotate(-2deg);
-      transition: transform 0.3s ease;
-    }
-
-    .image-card:hover {
-      transform: rotate(0deg) scale(1.03);
-    }
-
-    .image-card img {
-      width: 100%;
-      height: auto;
+    .step.active {
       display: block;
     }
 
-    .lifetime-question {
-      font-size: 16px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-top: 5px;
-      margin-bottom: 12px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Option Grid for Ex Question */
-    .option-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    .option-btn {
-      background: rgba(255, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      color: white;
-      padding: 12px;
-      border-radius: 16px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      backdrop-filter: blur(5px);
-    }
-
-    .option-btn:hover {
-      background: rgba(255, 255, 255, 0.45);
-      transform: translateY(-2px) scale(1.03);
-    }
-
-    /* Interactive Buttons */
-    .btn-group {
+    /* Final step buttons styling */
+    .final-btns {
       display: flex;
-      gap: 12px;
-      width: 100%;
       justify-content: center;
+      align-items: center;
+      gap: 15px;
       position: relative;
+      min-height: 120px;
     }
 
-    button.primary-btn {
-      background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255, 8, 68, 0.45);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
-      will-change: transform, box-shadow;
+    #noBtn {
+      background: #94a3b8;
+      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.3);
+      transition: transform 0.15s ease;
     }
 
-    button.primary-btn:hover {
-      transform: translateY(-4px) scale(1.06);
-      box-shadow: 0 14px 32px rgba(255, 8, 68, 0.7);
-    }
-
-    button.primary-btn:active {
-      transform: translateY(1px) scale(0.97);
-      box-shadow: 0 4px 15px rgba(255, 8, 68, 0.4);
-    }
-
-    .btn-no {
-      background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%) !important;
-      box-shadow: 0 8px 25px rgba(31, 41, 55, 0.45) !important;
-    }
-
-    .btn-no:hover {
-      background: linear-gradient(135deg, #374151 0%, #111827 100%) !important;
-      box-shadow: 0 14px 32px rgba(17, 24, 39, 0.7) !important;
-    }
-
-    .page-indicator {
-      font-size: 13px;
-      color: #fbcfe8;
-      margin-top: 15px;
+    .progress {
+      font-size: 0.8rem;
+      color: #fb7185;
+      margin-bottom: 15px;
       font-weight: 600;
+      text-transform: uppercase;
       letter-spacing: 1px;
-      opacity: 0.85;
-    }
-
-    /* Hidden Audio */
-    #bg-music {
-      display: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Fullscreen FX Canvas -->
-  <canvas id="effect-canvas"></canvas>
-
-  <!-- Background Music -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Floating Hearts Background -->
-  <div id="heart-container"></div>
-
-  <div class="card-container" id="tilt-card">
-
-    <!-- Page 1 -->
-    <div class="page active" id="page-1">
-      <div class="emoji-icon">✨</div>
-      <h1>Hey Akangshi!</h1>
-      <p>I crafted a small interactive journey just for you. Take a quick moment to click through...</p>
-      <button class="primary-btn" onclick="startJourney()">Start ❤️</button>
-      <div class="page-indicator">Page 1 of 7</div>
-    </div>
-
-    <!-- Page 2: Visitor Name Capture -->
-    <div class="page" id="page-2">
-      <div class="emoji-icon">👋</div>
-      <h1>Before We Begin...</h1>
-      <p>Confirm your nickname or full name so I can personalize this for you!</p>
-      <input type="text" id="visitor-name-input" class="name-input" value="" placeholder="Type your name..." autocomplete="off">
-      <button class="primary-btn" onclick="saveNameAndNext()">Continue ➔</button>
-      <div class="page-indicator">Page 2 of 7</div>
-    </div>
-
-    <!-- Page 3 -->
-    <div class="page" id="page-3">
-      <div class="emoji-icon">🌸</div>
-      <h1>A Quick Thought...</h1>
-      <p>Every single time I see your smile or hear you speak, my whole day instantly gets brighter, <span class="user-display-name">Akangshi</span>.</p>
-      <button class="primary-btn" onclick="nextPage(4)">Next ➔</button>
-      <div class="page-indicator">Page 3 of 7</div>
-    </div>
-
-    <!-- Page 4 -->
-    <div class="page" id="page-4">
-      <div class="emoji-icon">💭</div>
-      <h1>Truth Be Told...</h1>
-      <p>You've been on my mind constantly, and I just couldn't keep this feeling to myself any longer.</p>
-      <button class="primary-btn" onclick="nextPage(5)">Next ➔</button>
-      <div class="page-indicator">Page 4 of 7</div>
-    </div>
-
-    <!-- Page 5: Ex-Boyfriend Question -->
-    <div class="page" id="page-5">
-      <div class="emoji-icon">🤫</div>
-      <h1>A Little Curiosity...</h1>
-      <p>Before I ask my big question... how many ex-boyfriends do you have, <span class="user-display-name">Akangshi</span>?</p>
-      <div class="option-grid">
-        <button class="option-btn" onclick="selectExCount('Zero 😇')">Zero 😇</button>
-        <button class="option-btn" onclick="selectExCount('Just 1 🙈')">Just 1 🙈</button>
-        <button class="option-btn" onclick="selectExCount('2 or more 😅')">2 or more 😅</button>
-        <button class="option-btn" onclick="selectExCount('It\'s a secret 🤫')">It's a secret 🤫</button>
-      </div>
-      <div class="page-indicator">Page 5 of 7</div>
-    </div>
-
-    <!-- Page 6 -->
-    <div class="page" id="page-6">
-      <div class="emoji-icon">💫</div>
-      <h1>One Little Secret...</h1>
-      <p id="ex-response-text">No matter what, the past is past and life feels so much more special with you in it. So Akangshi...</p>
-      <button class="primary-btn" onclick="nextPage(7)">Are you ready? ✨</button>
-      <div class="page-indicator">Page 6 of 7</div>
-    </div>
-
-    <!-- Page 7 (Final Proposal Page) -->
-    <div class="page" id="page-7">
-      <div class="emoji-icon">💖</div>
-      <h1>Will You Be Mine?</h1>
-      <p><span class="user-display-name">Akangshi</span>, will you go out with me and make my world complete?</p>
+  <div class="card">
+    <!-- Step 1 -->
+    <div class="step active" id="step1">
+      <div class="progress">Question 1 of 5</div>
+      <div class="emoji">✨</div>
+      <h2>Do you know who makes my day brighter every single time they smile?</h2>
       <div class="btn-group">
-        <button id="yes-btn" class="primary-btn" onclick="sayYes()">YES! 🥰</button>
-        <button id="no-btn" class="primary-btn btn-no" onclick="sayNo()">No 🥺</button>
+        <button onclick="recordAnswer('Q1', 'Is it me? 🥺', 2)">Is it me? 🥺</button>
+        <button onclick="recordAnswer('Q1', 'Who is it? 👀', 2)">Who is it? 👀</button>
       </div>
-      <div class="page-indicator">Page 7 of 7</div>
     </div>
 
-    <!-- Celebration Page with Holding Hands, Image & Final Question -->
-    <div class="page" id="page-success">
-      <div class="hands-animation-wrapper">
-        <svg class="hands-svg" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Central Glowing Heart -->
-          <path class="heart-glow" d="M100 50 C100 35, 80 20, 65 35 C50 50, 70 75, 100 100 C130 75, 150 50, 135 35 C120 20, 100 35, 100 50 Z" fill="#ff2a5f" opacity="0.85"/>
-          
-          <!-- Left Arm & Hand -->
-          <g class="hand-left">
-            <path d="M10 110 C35 105, 60 95, 82 82 C88 78, 92 73, 94 68 C96 63, 90 60, 85 64 C78 70, 65 78, 45 88" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-            <path d="M82 82 C88 80, 94 76, 98 72 C101 69, 96 65, 92 68" stroke="#fbcfe8" stroke-width="6" stroke-linecap="round"/>
-          </g>
-
-          <!-- Right Arm & Hand -->
-          <g class="hand-right">
-            <path d="M190 110 C165 105, 140 95, 118 82 C112 78, 108 73, 106 68 C104 63, 110 60, 115 64 C122 70, 135 78, 155 88" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-            <path d="M118 82 C112 80, 106 76, 102 72 C99 69, 104 65, 108 68" stroke="#fbcfe8" stroke-width="6" stroke-linecap="round"/>
-          </g>
-        </svg>
-      </div>
-      
-      <h1>Holding Hands Forever ❤️</h1>
-      <p>You are eligible for Dinthilang Daimari! 🥰</p>
-      
-      <!-- Background Image Card -->
-      <div class="image-card">
-        <img src="bg.jpg" alt="Dinthilang Daimari Background">
-      </div>
-
-      <div class="lifetime-question">
-        Would you like to walk a lifetime with Dinthilang by holding his hand? 🤝✨
-      </div>
-
+    <!-- Step 2 -->
+    <div class="step" id="step2">
+      <div class="progress">Question 2 of 5</div>
+      <div class="emoji">🧸</div>
+      <h2>Correct! It's you! Now, how much do you enjoy our deep late-night conversations?</h2>
       <div class="btn-group">
-        <button class="primary-btn" onclick="sayYesLifetime()">Yes, Forever! 💖</button>
-        <button class="primary-btn btn-no" onclick="sayNo()">No 🥺</button>
+        <button onclick="recordAnswer('Q2', 'I love them! ❤️', 3)">I love them! ❤️</button>
+        <button onclick="recordAnswer('Q2', 'They are my favorite part of the day 🥰', 3)">They are my favorite part of the day 🥰</button>
       </div>
     </div>
 
-    <!-- Sad Page (If NO) -->
-    <div class="page" id="page-sad">
-      <div class="emoji-icon">🌧️</div>
-      <h1>I Understand... 💔</h1>
-      <p>Thank you for taking the time to read this, <span class="user-display-name">Akangshi</span>. I appreciate your honesty and wish you all the happiness in the world.</p>
+    <!-- Step 3 -->
+    <div class="step" id="step3">
+      <div class="progress">Question 3 of 5</div>
+      <div class="emoji">🍕</div>
+      <h2>If we were hanging out right now, what would we be doing?</h2>
+      <div class="btn-group">
+        <button onclick="recordAnswer('Q3', 'Eating yummy food together 😋', 4)">Eating yummy food together 😋</button>
+        <button onclick="recordAnswer('Q3', 'Cuddling and watching movies 🍿', 4)">Cuddling and watching movies 🍿</button>
+      </div>
     </div>
 
+    <!-- Step 4 -->
+    <div class="step" id="step4">
+      <div class="progress">Question 4 of 5</div>
+      <div class="emoji">💫</div>
+      <h2>Do you believe that some people are just meant to cross paths?</h2>
+      <div class="btn-group">
+        <button onclick="recordAnswer('Q4', 'Yes, absolutely ✨', 5)">Yes, absolutely ✨</button>
+        <button onclick="recordAnswer('Q4', 'I think we were meant to meet ❤️', 5)">I think we were meant to meet ❤️</button>
+      </div>
+    </div>
+
+    <!-- Step 5 (Final Proposal) -->
+    <div class="step" id="step5">
+      <div class="progress">Final Question ❤️</div>
+      <div class="emoji">💍</div>
+      <h2>You've made it to the end! So... will you be my girlfriend?</h2>
+      <div class="final-btns">
+        <button id="yesBtn" onclick="acceptProposal()">YES! 💖</button>
+        <button id="noBtn" onclick="dodgeNo()">No 😜</button>
+      </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="step" id="stepSuccess">
+      <div class="emoji">🎉💖🥳</div>
+      <h2>YAY! You just made me the happiest person alive!</h2>
+      <p style="color: #4c0519; line-height: 1.5; margin-top: 10px;">I can't wait for all our amazing adventures together. Sending you the biggest hug right now! 🤗✨</p>
+    </div>
   </div>
 
   <script>
-    // --- Submitter Data State ---
-    let submitterName = "Akangshi";
-    let emailSent = false; // Prevent duplicate emails during a single session
+    // Object to store all selected answers
+    const userSelections = {};
 
-    let userAnswers = {
-      exCount: "Not specified",
-      proposalResponse: "Pending",
-      lifetimeResponse: "Pending"
-    };
-
-    // Save Name and update dynamic placeholders across pages
-    function saveNameAndNext() {
-      const inputVal = document.getElementById('visitor-name-input').value.trim();
-      if (inputVal !== "") {
-        submitterName = inputVal;
-      }
-
-      // Dynamic text update across pages
-      const displayElements = document.querySelectorAll('.user-display-name');
-      displayElements.forEach(el => {
-        el.innerText = submitterName;
-      });
-
-      nextPage(3);
+    // Record selected choices
+    function recordAnswer(questionKey, selectedText, nextStepNumber) {
+      userSelections[questionKey] = selectedText;
+      nextStep(nextStepNumber);
     }
 
-    async function sendEmailNotification(actionType) {
-      // Guard: Ensure only one email is sent per session/visit
-      if (emailSent) return;
-      emailSent = true;
+    // Floating hearts creation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
 
-      let userIp = "Unknown";
-      
-      try {
-        const res = await fetch("https://api.ipify.org?format=json");
-        const data = await res.json();
-        userIp = data.ip;
-      } catch (err) {
-        console.error("Could not fetch IP:", err);
+    // Step navigation
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById(`step${stepNumber}`).classList.add('active');
+    }
+
+    // Dodging "No" button logic
+    let yesScale = 1;
+    function dodgeNo() {
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+
+      const x = (Math.random() - 0.5) * 160;
+      const y = (Math.random() - 0.5) * 160;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      yesScale += 0.2;
+      yesBtn.style.transform = `scale(${yesScale})`;
+    }
+
+    // Send choices via EmailJS
+    function sendResultsToEmail() {
+      userSelections["Final Question"] = "YES! 💖";
+
+      let formattedAnswers = "";
+      for (const [q, answer] of Object.entries(userSelections)) {
+        formattedAnswers += `${q}: ${answer}\n`;
       }
 
       const templateParams = {
-        name: submitterName,
-        time: new Date().toLocaleTimeString(),
-        message: `Response Activity:
-- Submitter Name: ${submitterName}
-- Selected Ex Count: ${userAnswers.exCount}
-- Proposal Answer: ${userAnswers.proposalResponse}
-- Lifetime Answer: ${userAnswers.lifetimeResponse}
-- Trigger Event: ${actionType}`,
-        
-        // Multi-site & Tracking Variables
-        site_domain: window.location.hostname,
-        site_url: window.location.href,
-        user_ip: userIp,
-        user_agent: navigator.userAgent,
-        time_sent: new Date().toLocaleString()
+        name: "Dinthilang",
+        title: "Proposal Quiz Responses",
+        email: "dinthilangdaimari96@gmail.com",
+        message: formattedAnswers
       };
 
-      // Sending email via EmailJS
-      emailjs.send("default_service", "template_cnx82wk", templateParams)
+      // Service ID 'Dinthilang' and Template ID 'template_cnx82wk' updated below
+      emailjs.send('Dinthilang', 'template_cnx82wk', templateParams)
         .then(function(response) {
-           console.log('Email sent successfully!', response.status, response.text);
+          console.log('SUCCESS!', response.status, response.text);
         }, function(error) {
-           console.log('Email failed to send...', error);
+          console.log('FAILED...', error);
         });
     }
 
-    // --- Smooth Gyro / Mouse 3D Card Tilt ---
-    const card = document.getElementById('tilt-card');
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      targetX = (window.innerWidth / 2 - e.clientX) / 30;
-      targetY = (window.innerHeight / 2 - e.clientY) / 30;
-    });
-
-    function smoothTilt() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      card.style.transform = `rotateY(${currentX}deg) rotateX(${-currentY}deg)`;
-      requestAnimationFrame(smoothTilt);
+    // Handle acceptance
+    function acceptProposal() {
+      sendResultsToEmail();
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById('stepSuccess').classList.add('active');
     }
-    smoothTilt();
-
-    // --- Smooth High FX Canvas Engine ---
-    const canvas = document.getElementById('effect-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let isRainMode = false;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor(x, y, type = 'trail') {
-        this.x = x;
-        this.y = y;
-        this.type = type;
-
-        if (type === 'confetti') {
-          this.size = Math.random() * 7 + 4;
-          this.speedX = (Math.random() - 0.5) * 10;
-          this.speedY = Math.random() * -12 - 5;
-          this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
-          this.opacity = 1;
-          this.gravity = 0.22;
-        } else if (type === 'rain') {
-          this.size = Math.random() * 2 + 1;
-          this.speedX = -0.8;
-          this.speedY = Math.random() * 8 + 8;
-          this.color = 'rgba(147, 197, 253, 0.6)';
-          this.opacity = Math.random() * 0.6 + 0.3;
-          this.gravity = 0;
-        } else {
-          this.size = Math.random() * 14 + 8;
-          this.speedX = (Math.random() - 0.5) * 2;
-          this.speedY = (Math.random() - 0.5) * 2;
-          this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.3})`;
-          this.opacity = 1;
-          this.gravity = -0.015;
-        }
-      }
-
-      update() {
-        if (this.type === 'rain') {
-          this.y += this.speedY;
-          this.x += this.speedX;
-          if (this.y > canvas.height) {
-            this.y = -10;
-            this.x = Math.random() * canvas.width;
-          }
-        } else {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          this.speedY += this.gravity;
-          this.opacity -= 0.012;
-        }
-      }
-
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = Math.max(0, this.opacity);
-
-        if (this.type === 'confetti') {
-          ctx.fillStyle = this.color;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fill();
-        } else if (this.type === 'rain') {
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = this.size;
-          ctx.beginPath();
-          ctx.moveTo(this.x, this.y);
-          ctx.lineTo(this.x, this.y + 14);
-          ctx.stroke();
-        } else {
-          ctx.font = `${this.size}px serif`;
-          ctx.fillText('✨', this.x, this.y);
-        }
-        ctx.restore();
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        if (particles[i].type !== 'rain' && particles[i].opacity <= 0) {
-          particles.splice(i, 1);
-          i--;
-        }
-      }
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    function createTrail(x, y) {
-      if (!isRainMode && Math.random() < 0.4) {
-        particles.push(new Particle(x, y, 'trail'));
-      }
-    }
-    window.addEventListener('mousemove', (e) => createTrail(e.clientX, e.clientY));
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        createTrail(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    });
-
-    function triggerConfetti() {
-      for (let i = 0; i < 180; i++) {
-        particles.push(new Particle(canvas.width / 2, canvas.height / 2, 'confetti'));
-      }
-    }
-
-    function triggerRain() {
-      isRainMode = true;
-      particles = [];
-      for (let i = 0; i < 80; i++) {
-        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height, 'rain'));
-      }
-    }
-
-    // --- Interactive Response Logic for Ex Question ---
-    function selectExCount(count) {
-      userAnswers.exCount = count;
-      const responseText = document.getElementById('ex-response-text');
-      if (count.includes('Zero')) {
-        responseText.innerText = `A fresh start together! Life feels so much more special with you in it. So ${submitterName}...`;
-      } else if (count.includes('Just 1')) {
-        responseText.innerText = `The past made you who you are today, and you are truly wonderful. So ${submitterName}...`;
-      } else if (count.includes('2 or more')) {
-        responseText.innerText = `Every chapter led you here, and I'm just glad to know you. So ${submitterName}...`;
-      } else {
-        responseText.innerText = `Keeping your secrets, I see! Either way, life feels so much brighter with you in it. So ${submitterName}...`;
-      }
-      nextPage(6);
-    }
-
-    // --- Smooth Navigation & Email Triggering Logic ---
-    function startJourney() {
-      const music = document.getElementById('bg-music');
-      if (music) {
-        music.play().catch(e => console.log("Audio play error: ", e));
-      }
-      nextPage(2);
-    }
-
-    function nextPage(pageNum) {
-      const activePage = document.querySelector('.page.active');
-      if (activePage) {
-        activePage.classList.remove('active');
-      }
-      setTimeout(() => {
-        document.getElementById('page-' + pageNum).classList.add('active');
-      }, 150);
-    }
-
-    function sayYes() {
-      userAnswers.proposalResponse = "YES!";
-      // Email send removed here to consolidate into one single email on final step
-      const activePage = document.querySelector('.page.active');
-      if (activePage) {
-        activePage.classList.remove('active');
-      }
-      setTimeout(() => {
-        document.getElementById('page-success').classList.add('active');
-        triggerConfetti();
-      }, 150);
-    }
-
-    function sayYesLifetime() {
-      userAnswers.lifetimeResponse = "Yes, Forever!";
-      sendEmailNotification("Final Response Submitted (Accepted Everything ❤️)");
-      triggerConfetti();
-    }
-
-    function sayNo() {
-      if (userAnswers.proposalResponse === "Pending") {
-        userAnswers.proposalResponse = "No";
-      }
-      userAnswers.lifetimeResponse = "No";
-      sendEmailNotification("Final Response Submitted (Selected NO 🥺)");
-      const activePage = document.querySelector('.page.active');
-      if (activePage) {
-        activePage.classList.remove('active');
-      }
-      setTimeout(() => {
-        document.getElementById('page-sad').classList.add('active');
-        triggerRain();
-      }, 150);
-    }
-
-    // Floating background hearts generator
-    function createHearts() {
-      const heartContainer = document.getElementById('heart-container');
-      const heartIcons = ['❤️', '💖', '💕', '💗', '🌸', '✨'];
-
-      for (let i = 0; i < 22; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('bg-heart');
-        heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        heartContainer.appendChild(heart);
-      }
-    }
-
-    createHearts();
   </script>
+
 </body>
 </html>
